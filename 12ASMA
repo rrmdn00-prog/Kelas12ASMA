@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelas 12 A - SMA Pemda Bahorok</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f4f6f9;}
+
+nav{
+background:#0a1931;
+color:white;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav button{
+padding:8px 15px;
+border:none;
+background:#ffc107;
+border-radius:6px;
+cursor:pointer;
+}
+
+.hero{
+height:70vh;
+background:linear-gradient(rgba(10,25,49,0.8),rgba(0,123,255,0.7)),
+url('https://images.unsplash.com/photo-1588072432836-e10032774350');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{font-size:45px;}
+
+.section{padding:60px 8%;}
+.section h2{text-align:center;margin-bottom:30px;color:#0a1931;}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.footer{
+background:#0a1931;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+/* LOGIN MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+padding:30px;
+border-radius:10px;
+width:300px;
+}
+
+.modal input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+.modal button{
+width:100%;
+padding:10px;
+background:#0a1931;
+color:white;
+border:none;
+}
+
+/* ADMIN PANEL */
+#adminPanel{
+display:none;
+padding:20px;
+background:#fff3cd;
+margin:20px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>Kelas 12 A</h2>
+<button onclick="openLogin()">Login Admin</button>
+</nav>
+
+<div class="hero">
+<div>
+<h1>Website Resmi Kelas 12 A</h1>
+<p>SMA Sekolah Pemda Bahorok Langkat</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Berita Kelas</h2>
+
+<div id="adminPanel">
+<h3>Tambah Berita</h3>
+<input type="text" id="judul" placeholder="Judul Berita">
+<textarea id="isi" placeholder="Isi Berita" style="width:100%;height:80px;margin:10px 0;"></textarea>
+<button onclick="tambahBerita()">Posting</button>
+</div>
+
+<div class="cards" id="beritaList">
+<div class="card">
+<h3>Selamat Datang</h3>
+<p>Website resmi kelas 12 A SMA telah resmi diluncurkan.</p>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Kelas 12 A - SMA Pemda Bahorok Langkat
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+<div class="modal-content">
+<h3>Login Admin</h3>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+</div>
+
+<script>
+function openLogin(){
+document.getElementById("loginModal").style.display="flex";
+}
+
+function login(){
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+
+if(user==="admin" && pass==="12345"){
+alert("Login Berhasil!");
+document.getElementById("adminPanel").style.display="block";
+document.getElementById("loginModal").style.display="none";
+}else{
+alert("Username atau Password salah!");
+}
+}
+
+function tambahBerita(){
+let judul=document.getElementById("judul").value;
+let isi=document.getElementById("isi").value;
+
+if(judul && isi){
+let card=document.createElement("div");
+card.className="card";
+card.innerHTML="<h3>"+judul+"</h3><p>"+isi+"</p>";
+document.getElementById("beritaList").appendChild(card);
+
+document.getElementById("judul").value="";
+document.getElementById("isi").value="";
+}else{
+alert("Isi semua field!");
+}
+}
+</script>
+
+</body>
+</html>
+
+
